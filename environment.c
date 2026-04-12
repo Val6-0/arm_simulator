@@ -6,7 +6,10 @@
 
 void disp_env(environment *ENV) {
     printf("current environment :\n\n");
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i < 10; i++) {
+        printf("r%d  : %" PRIu32 "\n", i, ENV->reg_array[i]);
+    }
+    for (int i = 10; i < 16; i++) {
         printf("r%d : %" PRIu32 "\n", i, ENV->reg_array[i]);
     }
     printf("\n");

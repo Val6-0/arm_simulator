@@ -14,7 +14,9 @@ ___
 
 - empty lines are ignored
 
-- only one instruction per line
+- only one instruction per line 
+
+- instructions must be on one line only unless specified below 
 ---
 
     register :
@@ -22,7 +24,7 @@ ___
 
 ___
 
-    MOV dest val 
+    MOV dest, val 
         with 
             dest : register 
             val : 
@@ -33,7 +35,5 @@ ___
 ___
 
 TODO : 
-
-- add comma support
 
 - add ldr and str support

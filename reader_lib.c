@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 int currentLine, currentCol, currentChar;
-FILE* file;
+FILE *file;
 
 void next() {
     if (!feof(file)) {
@@ -18,7 +18,7 @@ void next() {
     }
 }
 
-void init_read(char* file_name) {
+void init_read(char *file_name) {
     file = fopen(file_name, "r");
     if (file == NULL) {
         printf("error, given file isn't recognized\n");

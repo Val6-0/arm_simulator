@@ -3,29 +3,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void syntax_verification(linked_L* list) {
+void syntax_verification(linked_L *list) {
     while (list->cell_data.word_t != END_LIST) {
         if (list->cell_data.word_t != INST) {
             printf("error during the syntax analysis\n");
             exit(0);
         }
         switch (list->cell_data.inst) {
-            case MOV:
-                list = list->next;
-                if (list->cell_data.word_t != REG) {
-                    printf("error during the syntax analysis\n");
-                    exit(0);
-                }
-                list = list->next;
-                if (!(list->cell_data.word_t == REG ||
-                      list->cell_data.word_t == VALUE)) {
-                    printf("error during the syntax analysis\n");
-                    exit(0);
-                }
-                break;
-            default:
+        case MOV:
+            list = list->next;
+            if (list->cell_data.word_t != REG) {
                 printf("error during the syntax analysis\n");
                 exit(0);
+            }
+            list = list->next;
+            if (!(list->cell_data.word_t == COMMA)) {
+                printf("error during the syntax analysis\n");
+                exit(0);
+            }
+            list = list->next;
+            if (!(list->cell_data.word_t == REG ||
+                  list->cell_data.word_t == VALUE)) {
+                printf("error during the syntax analysis\n");
+                exit(0);
+            }
+            break;
+        default:
+            printf("error during the syntax analysis\n");
+            exit(0);
         }
         list = list->next;
     }

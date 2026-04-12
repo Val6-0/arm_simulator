@@ -5,16 +5,18 @@
 
 #include "reader_lib.h"
 
-typedef enum { // different word types
-    INST,      // instruction
-    REG,       // register, r1 is stored as 1
-    VALUE,     // direct value, #10 is stored as 10
-    END_LIST   // used to specify the end of the linked list
+typedef enum { // Different word types
+    INST,      // Instruction
+    REG,       // Register, r1 is stored as 1
+    VALUE,     // Direct value, #10 is stored as 10
+    COMMA,     // Comma
+    END_LIST   // Used to specify the end of the linked list
 } word_type;
 
 typedef enum {
     START,
     DIRECT_VALUE,
+    S_COMMA,
     S_VALUE,
     S_R,
     S_REG,
@@ -24,9 +26,9 @@ typedef enum {
     S_MOV
 } automaton_state;
 
-typedef enum { // different instructions types
+typedef enum { // Different instructions types
     MOV
-} inst_type; // for all instructions syntax, refer to the readme
+} inst_type; // For all instructions syntax, refer to the readme
 
 typedef struct {
     int index;
@@ -34,24 +36,24 @@ typedef struct {
 } indexed_list;
 
 typedef struct {
-    word_type word_t; // the type of word stored in the cell
-    inst_type inst;   // used only if word_t is INST, if so stores the
+    word_type word_t; // The type of word stored in the cell
+    inst_type inst;   // Used only if word_t is INST, if so stores the
                       // instruction type
-    uint32_t val;     // used only if word_t is VALUE or REG, if so
+    uint32_t val;     // Used only if word_t is VALUE or REG, if so
                       // stores the corresponding value
 } cell;
 
-typedef struct list {  // whole ARM script stored as a linked list
-    struct list *next; // pointer to the next linked list cell
-    cell cell_data;    // the data corresponding to this specific cell
+typedef struct list {  // Whole ARM script stored as a linked list
+    struct list *next; // Pointer to the next linked list cell
+    cell cell_data;    // The data corresponding to this specific cell
 } linked_L;
 
 linked_L *create_cell();
-// create a new linked list cell, with no initialized values, then returns the
+// Create a new linked list cell, with no initialized values, then returns the
 // adress of said cell
 
 linked_L *lexical_verification(char *file_name);
-// read the ARM32 program and applies the lexical verification
+// Read the ARM32 program and applies the lexical verification
 // if a lexical error is detected, print an error message then exit with code 0
 // if the lexical verification is succesful, a linked list containing the
 // program is returned

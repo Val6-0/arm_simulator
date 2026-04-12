@@ -33,4 +33,4 @@ test :
 	./main test_files/test.s
 
 debug : 
-	gdb --args ./main test_files/test.s
+	gdb -q --args ./main test_files/test.s

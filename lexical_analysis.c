@@ -16,9 +16,9 @@ linked_L *lexical_verification(char *file_name) {
     linked_L *head = create_cell();
     linked_L *current_cell = head;
     indexed_list value_tab;
-    linked_L *new; // used to create new cell
+    linked_L *new; // used to create new cells
     int i;         // used as a while loop parameter
-    int n;         // used to store the direct value
+    int n;         // used to store the direct values
     while (file_state() != 1) {
         switch (current_state) {
         case START:
@@ -33,6 +33,12 @@ linked_L *lexical_verification(char *file_name) {
             case 'r':
             case 'R':
                 current_state = S_R;
+                break;
+            case ',':
+                current_cell->cell_data.word_t = COMMA;
+                new = create_cell();
+                current_cell->next = new;
+                current_cell = current_cell->next;
                 break;
             case ' ':
             case '\n':
@@ -173,6 +179,19 @@ linked_L *lexical_verification(char *file_name) {
                 current_cell = current_cell->next;
                 current_state = S_ENDREG;
                 break;
+            case ',':
+                current_cell->cell_data.word_t = REG;
+                current_cell->cell_data.val = 1;
+                new = create_cell();
+                current_cell->next = new;
+                current_cell = current_cell->next;
+
+                current_cell->cell_data.word_t = COMMA;
+                new = create_cell();
+                current_cell->next = new;
+                current_cell = current_cell->next;
+                current_state = START;
+                break;
             case ' ':
             case '\n':
                 current_cell->cell_data.word_t = REG;
@@ -191,6 +210,13 @@ linked_L *lexical_verification(char *file_name) {
             switch (c_char) {
             case ' ':
             case '\n':
+                current_state = START;
+                break;
+            case ',':
+                current_cell->cell_data.word_t = COMMA;
+                new = create_cell();
+                current_cell->next = new;
+                current_cell = current_cell->next;
                 current_state = START;
                 break;
             default:
