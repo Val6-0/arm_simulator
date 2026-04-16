@@ -1,0 +1,17 @@
+MOV r0, #10
+MOV r0, r0
+MOV r1, r0
+MOV r2, r0
+MOV r3, r0
+MOV r4, r0
+MOV r5, r0
+MOV r6, r0
+MOV r7, r0
+MOV r8, r0
+MOV r9, r0
+MOV r10, r0
+MOV r11, r0
+MOV r12, r0
+MOV r13, r0
+MOV r14, r0
+MOV r15, r0

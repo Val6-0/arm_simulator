@@ -31,9 +31,26 @@ ___
                 - register
                 - direct value (specified with #value)
 
+set dest value as either : 
+    - the value stored in val (if it's a register)
+    - the specified direct value
 
 ___
 
-TODO : 
+    ADD dest, rt, rn
+        with
+            dest : register
+            rt   : register
+            rn   : 
+                - register
+                - direct value (specified with #value)
+
+store in dest the value of rt + rn
+
+___
+
+TODO :
+
+- change the ADD syntax to include ADD rt, rn with rt as dest
 
 - add ldr and str support

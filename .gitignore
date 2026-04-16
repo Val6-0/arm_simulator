@@ -3,3 +3,6 @@ doc_cours/INF401_doc_2526.pdf
 .vscode/settings.json
 .vscode/c_cpp_properties.json
 test_files/test.s
+*.gch
+*.o
+main

@@ -34,6 +34,10 @@ linked_L *lexical_verification(char *file_name) {
             case 'R':
                 current_state = S_R;
                 break;
+            case 'A':
+            case 'a':
+                current_state = S_A;
+                break;
             case ',':
                 current_cell->cell_data.word_t = COMMA;
                 new = create_cell();
@@ -260,6 +264,43 @@ linked_L *lexical_verification(char *file_name) {
                 exit(0);
             }
             break;
+        case S_A:
+            switch (c_char) {
+            case 'D':
+                current_state = S_AD;
+                break;
+            default:
+                printf("error during the lexical analysis\n");
+                exit(0);
+            }
+            break;
+        case S_AD:
+            switch (c_char) {
+            case 'D':
+                current_state = S_ADD;
+                break;
+            default:
+                printf("error during the lexical analysis\n");
+                exit(0);
+            }
+            break;
+        case S_ADD:
+            switch (c_char) {
+            case ' ':
+            case '\n':
+                current_cell->cell_data.word_t = INST;
+                current_cell->cell_data.inst = ADD;
+                new = create_cell();
+                current_cell->next = new;
+                current_cell = current_cell->next;
+                current_state = START;
+                break;
+            default:
+                printf("error during the lexical analysis\n");
+                exit(0);
+            }
+            break;
+
         default:
             printf("error during the lexical analysis\n");
             exit(0);

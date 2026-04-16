@@ -23,11 +23,15 @@ typedef enum {
     S_ENDREG,
     S_M,
     S_MO,
-    S_MOV
+    S_MOV,
+    S_A,
+    S_AD,
+    S_ADD
 } automaton_state;
 
 typedef enum { // Different instructions types
-    MOV
+    MOV,
+    ADD
 } inst_type; // For all instructions syntax, refer to the readme
 
 typedef struct {

@@ -29,8 +29,3 @@ clean :
 	rm -f main
 	rm -f *.h.gch
 
-test :
-	./main test_files/test.s
-
-debug : 
-	gdb -q --args ./main test_files/test.s
