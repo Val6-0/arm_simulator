@@ -12,18 +12,46 @@ void syntax_verification(linked_L *list) {
         switch (list->cell_data.inst) {
         case MOV:
             list = list->next;
-            if (list->cell_data.word_t != REG) {
+            if (list->cell_data.word_t != REG) { // MOV dest
                 printf("error during the syntax analysis\n");
                 exit(0);
             }
             list = list->next;
-            if (!(list->cell_data.word_t == COMMA)) {
+            if (!(list->cell_data.word_t == COMMA)) { // MOV dest,
+                printf("error during the syntax analysis\n");
+                exit(0);
+            }
+            list = list->next;
+            if (!(list->cell_data.word_t == REG || // MOV dest, src
+                  list->cell_data.word_t == VALUE)) {
+                printf("error during the syntax analysis\n");
+                exit(0);
+            }
+            break;
+        case ADD:
+            list = list->next;
+            if (list->cell_data.word_t != REG) { // ADD dest
+                printf("error during the syntax analysis\n");
+                exit(0);
+            }
+            list = list->next;
+            if (!(list->cell_data.word_t == COMMA)) { // ADD dest,
+                printf("error during the syntax analysis\n");
+                exit(0);
+            }
+            list = list->next;
+            if (list->cell_data.word_t != REG) { // ADD dest, rt
+                printf("error during the syntax analysis\n");
+                exit(0);
+            }
+            list = list->next;
+            if (!(list->cell_data.word_t == COMMA)) { // ADD dest, rt,
                 printf("error during the syntax analysis\n");
                 exit(0);
             }
             list = list->next;
             if (!(list->cell_data.word_t == REG ||
-                  list->cell_data.word_t == VALUE)) {
+                  list->cell_data.word_t == VALUE)) { // ADD dest, rt, rn
                 printf("error during the syntax analysis\n");
                 exit(0);
             }

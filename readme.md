@@ -8,15 +8,11 @@ ___
 
 ### recognized instructions/syntax and file entry specification: 
 
-- end of instructions are specified by an end of line
-
 - the file must end with an empty line
 
 - empty lines are ignored
 
-- only one instruction per line 
-
-- instructions must be on one line only unless specified below 
+- instructions tokens (mov, add) can be writen in both capital letters and undercase letters
 ---
 
     register :
@@ -31,9 +27,26 @@ ___
                 - register
                 - direct value (specified with #value)
 
+set dest value as either : 
+- the value stored in val (if it's a register)
+- the specified direct value
 
 ___
 
-TODO : 
+    ADD dest, rt, rn
+        with
+            dest : register
+            rt   : register
+            rn   : 
+                - register
+                - direct value (specified with #value)
+
+store in dest the value of rt + rn
+
+___
+
+TODO :
+
+- change the ADD syntax to include ADD rt, rn with rt as dest
 
 - add ldr and str support
