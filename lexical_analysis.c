@@ -38,6 +38,10 @@ linked_L *lexical_verification(char *file_name) {
             case 'a':
                 current_state = S_A;
                 break;
+            case 'S':
+            case 's':
+                current_state = S_S;
+                break;
             case ',':
                 current_cell->cell_data.word_t = COMMA;
                 new = create_cell();
@@ -231,6 +235,7 @@ linked_L *lexical_verification(char *file_name) {
         case S_M:
             switch (c_char) {
             case 'O':
+            case 'o':
                 current_state = S_MO;
                 break;
             default:
@@ -241,6 +246,7 @@ linked_L *lexical_verification(char *file_name) {
         case S_MO:
             switch (c_char) {
             case 'V':
+            case 'v':
                 current_state = S_MOV;
                 break;
             default:
@@ -267,6 +273,7 @@ linked_L *lexical_verification(char *file_name) {
         case S_A:
             switch (c_char) {
             case 'D':
+            case 'd':
                 current_state = S_AD;
                 break;
             default:
@@ -277,6 +284,7 @@ linked_L *lexical_verification(char *file_name) {
         case S_AD:
             switch (c_char) {
             case 'D':
+            case 'd':
                 current_state = S_ADD;
                 break;
             default:
@@ -290,6 +298,44 @@ linked_L *lexical_verification(char *file_name) {
             case '\n':
                 current_cell->cell_data.word_t = INST;
                 current_cell->cell_data.inst = ADD;
+                new = create_cell();
+                current_cell->next = new;
+                current_cell = current_cell->next;
+                current_state = START;
+                break;
+            default:
+                printf("error during the lexical analysis\n");
+                exit(0);
+            }
+            break;
+        case S_S:
+            switch (c_char) {
+            case 'U':
+            case 'u':
+                current_state = S_SU;
+                break;
+            default:
+                printf("error during the lexical analysis\n");
+                exit(0);
+            }
+            break;
+        case S_SU:
+            switch (c_char) {
+            case 'B':
+            case 'b':
+                current_state = S_SUB;
+                break;
+            default:
+                printf("error during the lexical analysis\n");
+                exit(0);
+            }
+            break;
+        case S_SUB:
+            switch (c_char) {
+            case ' ':
+            case '\n':
+                current_cell->cell_data.word_t = INST;
+                current_cell->cell_data.inst = SUB;
                 new = create_cell();
                 current_cell->next = new;
                 current_cell = current_cell->next;

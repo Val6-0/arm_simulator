@@ -45,8 +45,20 @@ store in dest the value of rt + rn
 
 ___
 
+    SUB dest, rt, rn
+        with
+            dest : register
+            rt   : register
+            rn   : 
+                - register
+                - direct value (specified with #value)
+
+store in dest the value of rt - rn
+
+___
+
 TODO :
 
-- change the ADD syntax to include ADD rt, rn with rt as dest
+- change the ADD/SUB syntax to include ADD/SUB rt, rn with rt as dest
 
 - add ldr and str support

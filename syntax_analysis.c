@@ -29,6 +29,8 @@ void syntax_verification(linked_L *list) {
             }
             break;
         case ADD:
+        case SUB: // the SUB and ADD syntax is the same, the same case is used
+                  // to avoid duplicating code
             list = list->next;
             if (list->cell_data.word_t != REG) { // ADD dest
                 printf("error during the syntax analysis\n");
